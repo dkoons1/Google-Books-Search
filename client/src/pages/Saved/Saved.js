@@ -18,17 +18,6 @@ class Saved extends Component {
     this.loadBooks();
   }
 
-//   shortenUrl = book => {
-//     return {
-//       _id: book.id,
-//       title: book.volumeInfo.title,
-//       authors: book.volumeInfo.authors,
-//       description: book.volumeInfo.description,
-//       image: book.volumeInfo.imageLinks.thumbnail,
-//       link: book.volumeInfo.previewLink
-//     }
-//   }
-
   // Loads all books  and sets them to this.state.books
   loadBooks = () => {
     API.getSaved()
@@ -42,15 +31,6 @@ class Saved extends Component {
       .then(res => this.loadBooks())
       .catch(err => console.log(err));
   };
-
-//   saveBooks = event => {
-//     console.log('saved')
-//     let saved = this.state.books.filter(book => book._id === event._id)
-//     API.saveBook(saved)
-//       .then(res => this.loadBooks())
-//       .catch(err => console.log(err));
-  
-//   };
 
   render() {
     return (
@@ -89,7 +69,7 @@ class Saved extends Component {
                 {this.state.savedBooks.map(book => {
                   return (
                     <ListItem key={book._id}>
-                      {/* <DeleteBtn onClick={() => this.deleteBook(book._id)} /> */}
+                      <DeleteBtn onClick={() => this.deleteBook(book._id)} />
                       <img src={book.image}/>
                       <br></br>
                       <a href={"/books/" + book._id}>

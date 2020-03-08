@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
+import ViewBtn from "../../components/ViewBtn";
+import SaveBtn from "../../components/SaveBtn";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
@@ -37,11 +39,11 @@ class Books extends Component {
   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  };
+  // deleteBook = id => {
+  //   API.deleteBook(id)
+  //     .then(res => this.loadBooks())
+  //     .catch(err => console.log(err));
+  // };
 
   saveBooks = id => {
     console.log("saved")
@@ -114,7 +116,9 @@ class Books extends Component {
                 {this.state.books.map(book => {
                   return (
                     <ListItem key={book._id}>
-                      <DeleteBtn onClick={() => this.saveBooks(book._id)} />
+                      <ViewBtn href={book.link}/>
+                      <br></br>
+                      <SaveBtn onClick={() => this.saveBooks(book._id)} />
                       <img src={book.image}/>
                       <br></br>
                       <a href={"/books/" + book._id}>
